@@ -1,7 +1,7 @@
 class _Node{
     constructor(value, next){
-        value = this.value;
-        next = this.next;
+        this.value = value;
+        this.next = next
     }
 
 

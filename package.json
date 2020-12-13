@@ -1,0 +1,24 @@
+{
+  "name": "DSA-LinkedList",
+  "version": "1.0.0",
+  "description": "",
+  "main": "practice.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./classes/LinkedList.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simongalvis/DSA-LinkedList.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simongalvis/DSA-LinkedList/issues"
+  },
+  "homepage": "https://github.com/simongalvis/DSA-LinkedList#readme",
+  "dependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

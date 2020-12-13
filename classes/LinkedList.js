@@ -29,14 +29,11 @@ class LinkedList {
           return;
       } 
     let currNode = this.head;
-    console.log(this.head)
     let prevNode = this.head;
     while(currNode.value != item){
         prevNode = currNode;
-        console.log("Prev nodeee: " + prevNode.value)
         currNode = currNode.next;
-        console.log('Currnodeeeee: ' + currNode.value)
-        console.log('Item value: ' + item)
+    
         
         
         if(currNode.next == null){
@@ -56,15 +53,12 @@ class LinkedList {
         return;
     } 
   let currNode = this.head;
-  //console.log(this.head)
   let prevNode = this.head;
   while(currNode.value != item){
       
       currNode = currNode.next;
-      console.log('Currnode: ' + currNode.value)
       prevNode = currNode;
-      console.log("Prevnode: " + prevNode.value)
-      console.log('Item value: ' + item)
+
       
       
       if(currNode.next == null){
@@ -86,17 +80,14 @@ insertAt(position, itemToInsert){
         return;
     } 
   let currNode = this.head;
-  console.log(this.head)
+  //console.log(this.head)
   let prevNode = this.head;
   while(currentPos + 1 != position){
       prevNode = currNode;
-      console.log("Prev node: " + prevNode.value)
       currNode = currNode.next;
-      console.log('Currnode: ' + currNode.value)
-      //console.log('Item value: ' + item)
 
       currentPos++;
-      console.log(currentPos)
+
       
       if(currNode.next == null){
           console.log('Item does not exist')
@@ -132,8 +123,9 @@ insertAt(position, itemToInsert){
       }
       while(currNode.value !== item && currNode.value !== null){
 
+        previousNode =currNode;
           currNode = currNode.next;
-          previousNode =currNode;
+          
       }
       if(currNode == null){
           console.log('Item not found');
@@ -156,158 +148,84 @@ function main(){
     SLL.delete('Husker')
 
     
-  /*  SLL.insertBefore('Boomer', 'Athena')
+   SLL.insertBefore('Boomer', 'Athena')
    SLL.insertAfter('Helo', 'Hotdog')
-   console.log(SLL.find('Hotdog')) */
-   SLL.insertAt(5, 'sheb') 
-   console.log(SLL.find('sheb'))
-return SLL
+   SLL.insertAt(3, 'Kat')
+   SLL.delete('Tauhida')
+   //SLL.find('Starbuck') 
+   //console.log(SLL)
+   
+   return SLL;
+   
 
 }
-main()
+const SLL = main();
 
-/* 
-class _Node {
-    constructor(value, next) {
-      this.value = value;
-      this.next = next;
+function display(list){
+    let output = '';
+    let currNode = list.head
+
+    while(currNode !== null ){
+        output += currNode.value + (currNode.next !== null ? ', ': '');
+        currNode =currNode.next
     }
-  }
-  
-  class LinkedList {
-    constructor() {
-      this.head = null;
-    }
-    insertFirst(item) {
-      this.head = new _Node(item, this.head);
-    }
-    insertBefore(valBefore, item) {
-      //if empty
-      if (!this.head) {
-        return null;
-      }
-      if (this.head === null) {
-        this.insertFirst(item);
-      }
-      //if at head
-      if (this.head.value === valBefore) {
-        let temp = this.head;
-        //   console.log(this.head)
-        this.head = new _Node(item, temp);
-        return;
-      }
-      // else
-      let currNode = this.head;
-      let next;
-      let previousNode;
-      while (currNode.value !== valBefore) {
-        previousNode = currNode;
+    return 'List: ' + output
+
+
+}
+
+function size(list){
+    let size = 0;
+    let currNode = list.head;
+
+    while (currNode !== null){
+        size++;
         currNode = currNode.next;
-      }
-      previousNode.next = new _Node(item, currNode);
+    } 
+    return size
+}
+function isEmpty(list){
+    if (list.head == null){
+        return true;
     }
-    insertAfter(valAfter, item) {
-      //if empty
-      if (!this.head) {
-        return null;
-      }
-      if (this.head === null) {
-        this.insertFirst(item);
-        return;
-      }
-      //if at head
-      if (this.head.value === valAfter) {
-        let temp = this.head.next;
-        this.head.next = new _Node(item, temp);
-        return;
-      }
-      // else
-      let currNode = this.head;
-      let next = "";
-      while (currNode.value !== valAfter) {
+    return false;
+}
+function findPrevious(list, item){
+    if(list.head == null || isEmpty(list) == true){
+        return null
+    }
+    if (list.head.next == null){
+        return null
+    }
+    let currNode = list.head;
+    let prevNode = list.head;
+
+    if(item == list.head.value){
+        console.log(`There are no items before '${list.head.value}'`)
+        return
+    }
+
+    while(currNode.value !== item){
+
+        prevNode = currNode;
         currNode = currNode.next;
-      }
-      if (currNode === null) {
-        this.insertLast(item);
-        return;
-      }
-      next = currNode.next;
-      currNode.next = new _Node(item, next);
     }
-    insertLast(item) {
-      if (this.head === null) {
-        this.insertFirst(item);
-      } else {
-        let currNode = this.head;
-        while (currNode.next !== null) {
-          currNode = currNode.next;
-        }
-        currNode.next = new _Node(item, null);
-      }
+    return prevNode;
+
+}
+function findLast(list){
+    if(list.head == null || isEmpty(list) == true){
+        return null
     }
-    insertAt(pos, item) {
-      if (this.head === null) {
-        this.insertFirst(item);
-        return;
-      } else {
-        let currNode = this.head;
-        let index = 0;
-        while (currNode.next !== null && pos !== index) {
-          currNode = currNode.next;
-          index++;
-        }
-  
-        const temp = new _Node(item, currNode.next);
-        currNode.next = temp;
-      }
+    if (list.head.next == null){
+        return list.head
     }
-    find(item) {
-      let currNode = this.head;
-      if (!this.head) {
-        return null;
-      }
-  
-      while (currNode.value !== item) {
-        if (currNode.next === null) {
-          return null;
-        } else {
-          currNode = currNode.next;
-        }
-      }
-      return currNode;
-    }
-    remove(item) {
-      let previousNode = this.head;
-      let currNode = this.head;
-  
-      if (!this.head) {
-        return null;
-      }
-      if (this.head.value === item) {
-        this.head = this.head.next;
-        return;
-      }
-      while (currNode.value !== item && currNode !== null) {
-        previousNode = currNode;
+    let currNode = list.head;
+    while(currNode.next !== null){
         currNode = currNode.next;
-      }
-      if (currNode === null) {
-        console.log("Item not found");
-        return;
-      }
-      previousNode.next == currNode.next;
     }
-  } */
-/*   
-  function main() {
-    const SLL = new LinkedList();
-    SLL.insertFirst("Apollo");
-  
-    
-       console.log(SLL);
-   
-  
-    return SLL;
-  }
-  
-  main(); */
+    return currNode;
+
+}
+console.log(findLast(SLL))
+

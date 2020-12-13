@@ -20,5 +20,39 @@ class LinkedList {
       }
 
   }
-  
+  find(item){
+      let currNode = this.head;
+      if(!this.head){
+          return null;
+      }
+      while(currNode.value !== item){
+          if(currNode.next == null){
+              return null
+          }
+          else{
+              currNode = currNode.next;
+          }
+      }
+      return currNode;
+  }
+  delete(item){
+      let currNode = this.head;
+      let previousNode = this.head;
+      if(!this.head){
+          return null;
+      }
+      if(this.head.value === item){
+          this.head = this.head.next
+      }
+      while(currNode.value !== item && currNode.value !== null){
+
+          currNode = currNode.next;
+          previousNode =currNode;
+      }
+      if(currNode == null){
+          console.log('Item not found');
+          return;
+      }
+      previousNode.next = currNode.next;
+  }
 }

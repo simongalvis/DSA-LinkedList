@@ -75,6 +75,37 @@ class LinkedList {
   (prevNode.next)= new _Node(itemToInsert, currNode.next)
   
 }
+insertAt(position, itemToInsert){
+    let currentPos = 0;
+    
+    if(!this.head){
+        return null;
+    }
+     if(position == currentPos + 1){
+        this.insertFirst(itemToInsert)
+        return;
+    } 
+  let currNode = this.head;
+  console.log(this.head)
+  let prevNode = this.head;
+  while(currentPos + 1 != position){
+      prevNode = currNode;
+      console.log("Prev node: " + prevNode.value)
+      currNode = currNode.next;
+      console.log('Currnode: ' + currNode.value)
+      //console.log('Item value: ' + item)
+
+      currentPos++;
+      console.log(currentPos)
+      
+      if(currNode.next == null){
+          console.log('Item does not exist')
+          return;
+      }
+  }
+  prevNode.next = new _Node(itemToInsert, currNode)
+  
+}
   find(item){
       let currNode = this.head;
       if(!this.head){
@@ -124,9 +155,12 @@ function main(){
     SLL.insertLast('Tauhida')
     SLL.delete('Husker')
 
-
-   SLL.insertBefore('Apollo', 'sheb')
-   console.log(SLL)
+    
+  /*  SLL.insertBefore('Boomer', 'Athena')
+   SLL.insertAfter('Helo', 'Hotdog')
+   console.log(SLL.find('Hotdog')) */
+   SLL.insertAt(5, 'sheb') 
+   console.log(SLL.find('sheb'))
 return SLL
 
 }
